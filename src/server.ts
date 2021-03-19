@@ -1,8 +1,14 @@
-import express from 'express';
-import { CreateCourse } from './routes';
+import express from "express";
 
-const app = express()
+const app = express();
+app.use(express.json());
 
-app.get('/', CreateCourse)
+app.get("/", (req, res) => res.json({ message: "Hello World" }));
 
-app.listen(3333)
+app.post("/courses", (req, res) => {
+  const { name } = req.body;
+
+  return res.json({ name });
+});
+
+app.listen(3333);
